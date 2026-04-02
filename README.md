@@ -1,6 +1,6 @@
-# AEM Content Fragment Skills for AI Coding Agents
+# Skills for AI Coding Agents
 
-Skills for AI coding agents that generate Handlebars-based HTML preview templates for AEM Content Fragments.
+A collection of skills for AI coding agents.
 
 ## Installation
 
