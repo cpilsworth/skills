@@ -1,5 +1,5 @@
 ---
-name: cf-html-preview
+name: cf-html-visualise
 description: Generate and refine Handlebars-based HTML templates for AEM Content Fragment preview rendering. Use when asked to create, update, debug, or optimize CF preview templates, including nested fragment fields, multi-valued fields, and asset/text helper usage.
 ---
 
