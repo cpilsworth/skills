@@ -1,0 +1,22 @@
+{
+  "name": "cf-html-visualise",
+  "description": "Generate production-ready Handlebars HTML preview templates for AEM Content Fragments, with automated schema discovery and field mapping.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Chris Pilsworth"
+  },
+  "repository": "https://github.com/cpilsworth/skills",
+  "license": "Apache-2.0",
+  "skills": [
+    "./skills/cf-html-visualise"
+  ],
+  "keywords": [
+    "adobe",
+    "aem",
+    "content-fragments",
+    "handlebars",
+    "html",
+    "preview",
+    "templates"
+  ]
+}
