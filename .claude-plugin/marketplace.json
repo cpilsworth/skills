@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "cpilsworth-skills",
+  "owner": { "name": "Chris Pilsworth" },
+  "metadata": { "description": "Recollected skill and MCP plugin bundles." },
+  "plugins": [
+    { "name": "recollected", "source": "./plugins/recollected", "category": "productivity" },
+    { "name": "recollected-admin", "source": "./plugins/recollected-admin", "category": "productivity" }
+  ]
+}

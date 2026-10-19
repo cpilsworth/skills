@@ -1,0 +1,23 @@
+{
+  "name": "recollected",
+  "version": "1.0.0",
+  "description": "Search public saved links and fetch stored details through Recollected's read-only MCP server.",
+  "author": { "name": "Chris Pilsworth" },
+  "homepage": "https://github.com/cpilsworth/skills/tree/main/plugins/recollected",
+  "repository": "https://github.com/cpilsworth/skills",
+  "license": "Apache-2.0",
+  "keywords": ["recollected", "bookmarks", "search", "mcp", "read-only"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Recollected",
+    "shortDescription": "Search public bookmarks and saved details",
+    "longDescription": "Browse the public Recollected library with read-only search and fetch tools, plus bookmark cards in MCP Apps clients.",
+    "developerName": "Chris Pilsworth",
+    "category": "Productivity",
+    "capabilities": ["Interactive"],
+    "websiteURL": "https://recollected.link",
+    "defaultPrompt": ["Show the five most recently saved public links.", "Find saved links about SQLite."],
+    "brandColor": "#285E48"
+  }
+}

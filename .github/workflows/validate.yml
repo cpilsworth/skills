@@ -20,3 +20,12 @@ jobs:
       - run: npm ci
 
       - run: npm run validate
+
+      - name: Validate Claude Code marketplace and plugin packages
+        env:
+          CLAUDE_CONFIG_DIR: ${{ runner.temp }}/claude-plugin-validation
+          CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC: '1'
+        run: |
+          npm exec --yes --package=@anthropic-ai/claude-code@2.1.304 -- claude plugin validate . --strict
+          npm exec --yes --package=@anthropic-ai/claude-code@2.1.304 -- claude plugin validate ./plugins/recollected --strict
+          npm exec --yes --package=@anthropic-ai/claude-code@2.1.304 -- claude plugin validate ./plugins/recollected-admin --strict

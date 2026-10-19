@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "recollected": {
+      "type": "http",
+      "url": "https://recollected.link/mcp"
+    }
+  }
+}

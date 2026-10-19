@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "recollected-admin": {
+      "type": "http",
+      "url": "https://admin.recollected.link/mcp/admin"
+    }
+  }
+}
