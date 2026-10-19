@@ -41,6 +41,17 @@ gh upskill cpilsworth/skills --list
 | Skill | Description |
 |-------|-------------|
 | `cf-html-visualise` | Generate production-ready Handlebars HTML templates for AEM Content Fragment preview rendering |
+| [`recollected`](skills/recollected/SKILL.md) | Search saved links and fetch stored bookmark details through the public Recollected MCP server |
+
+### recollected
+
+Connects to `https://recollected.link/mcp` using Streamable HTTP. The public `search` and `fetch` tools need no login or credentials and cannot modify bookmarks. The skill includes pagination, source attribution, and guidance for treating saved content as untrusted data.
+
+```bash
+gh upskill cpilsworth/skills --path skills/recollected
+```
+
+Recollected also advertises this directory through a SLICC `upskill` HTTP response header, allowing visitors to choose whether to install it. See [`skills/recollected/SKILL.md`](skills/recollected/SKILL.md) for setup and usage.
 
 ### cf-html-visualise
 
