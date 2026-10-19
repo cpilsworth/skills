@@ -1,0 +1,23 @@
+{
+  "name": "recollected-admin",
+  "version": "1.0.0",
+  "description": "Search your Recollected library and review source metadata through the admin MCP with OAuth sign-in.",
+  "author": { "name": "Chris Pilsworth" },
+  "homepage": "https://github.com/cpilsworth/skills/tree/main/plugins/recollected-admin",
+  "repository": "https://github.com/cpilsworth/skills",
+  "license": "Apache-2.0",
+  "keywords": ["recollected", "bookmarks", "metadata", "mcp", "oauth"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Recollected admin",
+    "shortDescription": "Search your library and review link metadata",
+    "longDescription": "Connect with administrator OAuth to search your library and update verified source metadata and tags when requested. Includes source-grounding and revision-check guidance.",
+    "developerName": "Chris Pilsworth",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://recollected.link",
+    "defaultPrompt": ["Show my five most recently saved links.", "Find links that need a metadata review."],
+    "brandColor": "#285E48"
+  }
+}

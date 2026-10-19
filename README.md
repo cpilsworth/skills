@@ -4,15 +4,54 @@ A collection of skills for AI coding agents.
 
 ## Installation
 
+The **Recollected** plugins bundle both their skill and the hosted MCP connection. Choose one:
+
+| Plugin | Access | Authentication |
+|-------|--------|----------------|
+| [`recollected`](plugins/recollected/README.md) | Public library; read-only search and details | None |
+| [`recollected-admin`](plugins/recollected-admin/README.md) | Your library; search, details, and requested metadata reviews | Administrator OAuth |
+
+Both packages include Codex and Claude Code manifests, their skill, MCP configuration, and license. The Worker stays hosted on Cloudflare. Installing a package does not start a local server or schedule metadata changes. Clients supporting MCP Apps can render bookmark cards; other clients receive text and structured results.
+
+### Codex Plugins
+
+Use a Codex version with plugin support:
+
+```bash
+codex plugin marketplace add cpilsworth/skills
+codex plugin add recollected@cpilsworth-skills
+
+# Choose this instead for authenticated searches and metadata reviews:
+codex plugin add recollected-admin@cpilsworth-skills
+```
+
+For the admin variant, complete the client's sign-in action and approve OAuth access in the browser. Enable the plugin and reconnect or start a fresh session if its tools are not visible.
+
 ### Claude Code Plugins
 
 ```bash
 # Add the skills marketplace
 /plugin marketplace add cpilsworth/skills
 
-# Install the CF HTML Preview skill
-/plugin install cf-html-visualise@cpilsworth-skills
+# Install public, read-only Recollected
+/plugin install recollected@cpilsworth-skills
+
+# Choose this instead for authenticated searches and metadata reviews:
+/plugin install recollected-admin@cpilsworth-skills
 ```
+
+Use `/mcp` to inspect the added server and authenticate the admin connection if prompted. The marketplace currently publishes the two Recollected bundles. The other repository skills remain available through the standalone installation methods below.
+
+### ChatGPT
+
+ChatGPT uses its own registered app connection. Configure one of these exact server URLs:
+
+| Use | Server URL | Authentication |
+|-----|------------|----------------|
+| Public read-only | `https://recollected.link/mcp` | None |
+| Administrator | `https://admin.recollected.link/mcp/admin` | OAuth |
+
+Use the admin URL without a trailing slash and leave optional client ID/secret fields blank for dynamic registration. Sign in, approve access, and select the app in a chat where its tools are available. Repository plugin installation and ChatGPT app registration are separate. An `invalid_target` error means the requested OAuth resource does not match the admin endpoint; check the URL and begin a fresh connection.
 
 ### Vercel Skills (npx skills)
 
@@ -42,6 +81,7 @@ gh upskill cpilsworth/skills --list
 |-------|-------------|
 | `cf-html-visualise` | Generate production-ready Handlebars HTML templates for AEM Content Fragment preview rendering |
 | [`recollected`](skills/recollected/SKILL.md) | Search saved links and fetch stored bookmark details through the public Recollected MCP server |
+| [`recollected-admin`](skills/recollected-admin/SKILL.md) | Search the authenticated library and review verified source metadata with revision checks |
 
 ### recollected
 
@@ -72,18 +112,32 @@ The skill will guide you through identifying the target environment, fetching th
 ## Repository Structure
 
 ```
-cpilsworth/
-└── skills/
-    └── cf-html-visualise/
-        ├── .claude-plugin/
-        │   └── plugin.json                   # Claude Code plugin marketplace config
-        ├── SKILL.md                          # Skill definition
-        ├── references/
-        │   ├── cf-html-preview-guide.md      # Handlebars template authoring guide
-        │   └── openapi-workflow.md           # API workflow documentation
-        └── scripts/
-            └── fetch-model-schema.sh         # Automated schema fetching script
+.agents/plugins/marketplace.json     # Codex marketplace
+.claude-plugin/marketplace.json       # Claude Code marketplace
+plugins/
+├── recollected/                      # Public MCP + skill + both client manifests
+└── recollected-admin/                # Admin OAuth MCP + skill + both client manifests
+skills/
+├── recollected/SKILL.md              # Canonical public skill; existing SLICC install path
+└── recollected-admin/SKILL.md        # Canonical admin skill
+cpilsworth/skills/
+├── cf-html-visualise/                # Existing AEM preview skill and references
+└── proto-publish/                   # Existing publishing skill
+scripts/
+├── sync-plugin-skills.mjs            # Copy canonical skills and license into packages
+└── validate-plugins.mjs              # Check package paths, MCP endpoints, and catalogs
 ```
+
+## Maintain and validate
+
+```bash
+npm ci
+# Edit canonical skills in skills/, then update their committed plugin copies:
+npm run plugins:sync
+npm run validate
+```
+
+CI validates all skills and both client packages, and uses Claude Code's pinned plugin validator for the marketplace and each bundle. Validation fails if committed plugin skills or licenses drift from their canonical sources. Plugin packages are self-contained so installing a subdirectory does not depend on files elsewhere in the repository. Keep the `.mcp.json` files limited to endpoint settings; OAuth tokens are managed by each client.
 
 ## Resources
 
