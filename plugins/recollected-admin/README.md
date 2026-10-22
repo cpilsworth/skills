@@ -36,9 +36,12 @@ Tokens last one hour; renewable access has a fixed 30-day grant lifetime. Reconn
 
 - “Show my five most recently saved links.”
 - “Find links that need a metadata review.”
+- “Find links with neither a description nor an AI summary, verify their sources, and add AI descriptions while preserving my existing text.”
 - “Review metadata for up to five links not reviewed in the last 30 days; skip sources you cannot verify.”
 
 Available tools are `search`, `fetch`, `list_metadata_candidates`, and `update_link_metadata`. Search and fetch are read-only and owner scoped. Metadata updates require the user's requested edit or review workflow, verified sources, the current bookmark revision, and the actual model identifier. The bundled [skill](skills/recollected-admin/SKILL.md) documents fields, pagination, conflict handling, and review provenance. Human titles and notes are preserved by the metadata tool.
+
+Use `search` with `{"hasDescription":false,"limit":25}` for a missing-description backfill independent of review date. Both `description` and `aiSummary` must be blank to match; `true` matches either field with text. `list_metadata_candidates` accepts the same filter together with its required review cutoff. Keep filters unchanged when paging, verify the current record and source before writing, store generated descriptions in `metadata.aiSummary`, and preserve existing manual descriptions.
 
 Search and fetch results can appear as cards in MCP Apps clients. The same OAuth connection is used for the cards and the tools. Periodic processing runs in an external agent or scheduler; this package does not schedule background changes.
 

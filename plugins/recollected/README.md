@@ -2,6 +2,8 @@
 
 Search public saved links and fetch their stored details. This package includes the skill and a remote MCP connection at `https://recollected.link/mcp`. It requires no login and exposes only read-only `search` and `fetch` tools.
 
+Find links with neither a stored description nor an AI summary by calling `search` with `{"hasDescription":false,"limit":25}`. `true` matches either field with nonblank text; omit the filter for all links. Keep the filter when paging. The public plugin can find these links; filling descriptions requires the admin plugin and the user's requested update workflow.
+
 ## Install in Codex
 
 ```sh
